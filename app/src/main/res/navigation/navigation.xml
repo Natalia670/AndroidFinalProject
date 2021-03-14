@@ -11,30 +11,36 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_catalogo"
-            app:destination="@id/catalogo" />
+            app:destination="@id/navigation3" />
         <action
             android:id="@+id/action_homeFragment_to_carrito"
             app:destination="@id/notificaciones" />
         <action
             android:id="@+id/action_homeFragment_to_perfil"
-            app:destination="@id/perfil" />
-    </fragment>
-    <fragment android:id="@+id/catalogo" >
-        <action
-            android:id="@+id/action_catalogo_to_producto"
-            app:destination="@id/producto" />
-    </fragment>
-    <fragment android:id="@+id/producto" >
-        <action
-            android:id="@+id/action_producto_to_placeholder8"
-            app:destination="@id/datosPago" />
+            app:destination="@id/navigation4" />
     </fragment>
     <fragment android:id="@+id/notificaciones" />
-    <fragment android:id="@+id/perfil" >
-        <action
-            android:id="@+id/action_perfil_to_subirProducto"
-            app:destination="@id/subirProducto" />
-    </fragment>
-    <fragment android:id="@+id/subirProducto" />
-    <fragment android:id="@+id/datosPago" />
+    <navigation android:id="@+id/navigation3"
+        app:startDestination="@id/catalogo">
+        <fragment android:id="@+id/catalogo">
+            <action
+                android:id="@+id/action_catalogo_to_producto"
+                app:destination="@id/producto" />
+        </fragment>
+        <fragment android:id="@+id/producto">
+            <action
+                android:id="@+id/action_producto_to_placeholder8"
+                app:destination="@id/datosPago" />
+        </fragment>
+        <fragment android:id="@+id/datosPago" />
+    </navigation>
+    <navigation android:id="@+id/navigation4"
+        app:startDestination="@id/perfil">
+        <fragment android:id="@+id/perfil">
+            <action
+                android:id="@+id/action_perfil_to_subirProducto"
+                app:destination="@id/subirProducto" />
+        </fragment>
+        <fragment android:id="@+id/subirProducto" />
+    </navigation>
 </navigation>
