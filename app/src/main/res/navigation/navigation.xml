@@ -8,5 +8,33 @@
         android:id="@+id/homeFragment"
         android:name="com.example.finalproject_creativebaz.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_catalogo"
+            app:destination="@id/catalogo" />
+        <action
+            android:id="@+id/action_homeFragment_to_carrito"
+            app:destination="@id/notificaciones" />
+        <action
+            android:id="@+id/action_homeFragment_to_perfil"
+            app:destination="@id/perfil" />
+    </fragment>
+    <fragment android:id="@+id/catalogo" >
+        <action
+            android:id="@+id/action_catalogo_to_producto"
+            app:destination="@id/producto" />
+    </fragment>
+    <fragment android:id="@+id/producto" >
+        <action
+            android:id="@+id/action_producto_to_placeholder8"
+            app:destination="@id/datosPago" />
+    </fragment>
+    <fragment android:id="@+id/notificaciones" />
+    <fragment android:id="@+id/perfil" >
+        <action
+            android:id="@+id/action_perfil_to_subirProducto"
+            app:destination="@id/subirProducto" />
+    </fragment>
+    <fragment android:id="@+id/subirProducto" />
+    <fragment android:id="@+id/datosPago" />
 </navigation>
