@@ -19,28 +19,50 @@
             android:id="@+id/action_homeFragment_to_perfil"
             app:destination="@id/navigation4" />
     </fragment>
-    <fragment android:id="@+id/notificaciones" />
+    <fragment
+        android:id="@+id/notificaciones"
+        android:name="com.example.finalproject_creativebaz.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications" />
     <navigation android:id="@+id/navigation3"
         app:startDestination="@id/catalogo">
-        <fragment android:id="@+id/catalogo">
+        <fragment
+            android:id="@+id/catalogo"
+            android:name="com.example.finalproject_creativebaz.CatalogueFragment"
+            tools:layout="@layout/fragment_catalogue"
+            app:startDestination="@id/action_catalogo_to_producto">
             <action
                 android:id="@+id/action_catalogo_to_producto"
                 app:destination="@id/producto" />
         </fragment>
-        <fragment android:id="@+id/producto">
+        <fragment
+            android:id="@+id/producto"
+            android:name="com.example.finalproject_creativebaz.ProductFragment"
+            tools:layout="@layout/fragment_product">
             <action
                 android:id="@+id/action_producto_to_placeholder8"
                 app:destination="@id/datosPago" />
+            <argument
+                android:name="product"
+                app:argType="com.example.finalproject_creativebaz.Product" />
         </fragment>
-        <fragment android:id="@+id/datosPago" />
+        <fragment
+            android:id="@+id/datosPago"
+            android:name="com.example.finalproject_creativebaz.BuyProductFragment"
+            tools:layout="@layout/fragment_buy_product" />
     </navigation>
     <navigation android:id="@+id/navigation4"
         app:startDestination="@id/perfil">
-        <fragment android:id="@+id/perfil">
+        <fragment
+            android:id="@+id/perfil"
+            android:name="com.example.finalproject_creativebaz.ProfileFragment"
+            tools:layout="@layout/fragment_profile">
             <action
                 android:id="@+id/action_perfil_to_subirProducto"
                 app:destination="@id/subirProducto" />
         </fragment>
-        <fragment android:id="@+id/subirProducto" />
+        <fragment
+            android:id="@+id/subirProducto"
+            android:name="com.example.finalproject_creativebaz.UploadProductFragment"
+            tools:layout="@layout/fragment_upload_product" />
     </navigation>
 </navigation>
