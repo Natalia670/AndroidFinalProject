@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
@@ -12,8 +13,12 @@
         android:layout_height="wrap_content"
         android:text="Notificaciones"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="46dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.188" />
 
     <TextView
         android:id="@+id/textView9"
@@ -21,6 +26,10 @@
         android:layout_height="wrap_content"
         android:text="Aún no tienes ninguna notificación"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.252" />
 </androidx.constraintlayout.widget.ConstraintLayout>

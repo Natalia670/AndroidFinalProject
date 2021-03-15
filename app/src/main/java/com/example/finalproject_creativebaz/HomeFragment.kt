@@ -7,12 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_home.*
-
 class HomeFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,5 +26,5 @@ class HomeFragment : Fragment() {
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
         }
     }
-
 }
+

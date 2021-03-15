@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CreativeBaz</string>
+    <string name="home">Inicio</string>
+    <string name="explore">Explorar</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="profile">Perfil</string>
+</resources>
