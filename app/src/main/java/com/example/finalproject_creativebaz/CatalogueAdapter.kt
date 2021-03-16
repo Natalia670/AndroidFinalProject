@@ -1,5 +1,6 @@
 package com.example.finalproject_creativebaz
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,11 @@ class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapte
 
     //Asocia datos con los elementos del renglón
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+
         val product= products[position]
+
+        Log.d("Products", product.toString())
+
         holder.picture.setImageResource(product.picture)
         holder.title.text = product.title
         holder.itemView.setOnClickListener {

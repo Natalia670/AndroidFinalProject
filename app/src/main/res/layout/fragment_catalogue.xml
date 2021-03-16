@@ -11,10 +11,18 @@
         android:id="@+id/products_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="4"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/product_preview" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="55dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
