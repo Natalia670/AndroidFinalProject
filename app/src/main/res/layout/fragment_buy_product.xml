@@ -4,89 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".BuyProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftMargin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightMargin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_end="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/infoProduct_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="285dp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="190dp"
             android:layout_height="177dp"
-            android:layout_marginTop="124dp"
+            android:contentDescription="ProductImage"
             android:src="@drawable/img1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.192"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/infoProduct_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/leftMargin_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.657" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="Datos de envío"
-            android:textSize="22dp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintStart_toStartOf="@+id/leftMargin_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.521" />
 
         <TextView
             android:id="@+id/titleBuyProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Titulo"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/priceBuyProduct2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.264"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.532" />
+            app:layout_constraintVertical_bias="0.785" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/total_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="400dp" />
+
 
         <TextView
             android:id="@+id/titleBuyProduct3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Envío"
-            android:textSize="18dp"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="332dp" />
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/leftMargin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/infoProduct_guideline" />
 
         <TextView
             android:id="@+id/totalBuyProduct4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:text="Total"
-            android:textSize="18dp"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="374dp" />
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/leftMargin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/titleBuyProduct3" />
 
         <TextView
             android:id="@+id/trueTotalBuyProduct5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total a pagar"
-            android:textSize="18dp"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="412dp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/total_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/leftMargin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/totalBuyProduct4"
+            app:layout_constraintVertical_bias="0.962" />
 
         <TextView
             android:id="@+id/priceBuyProduct2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="84dp"
             android:text="Precio"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/titleBuyProduct3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.277"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.717" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/infoProduct_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/rightMargin_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView3" />
 
         <TextView
             android:id="@+id/textView7"
@@ -171,8 +212,8 @@
             android:ems="10"
             android:hint="Ciudad"
             android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="66dp"
-            tools:layout_editor_absoluteY="875dp" />
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="848dp" />
 
         <EditText
             android:id="@+id/editTextTextPersonName10"
@@ -224,10 +265,7 @@
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="764dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -3,6 +3,10 @@ package com.example.finalproject_creativebaz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,8 +18,18 @@ class MainActivity : AppCompatActivity() {
         val catalogueFragment = CatalogueFragment()
         val notificationFragment = NotificationsFragment()
         val profileFragment = ProfileFragment()
+        //makeCurrentFragment(homeFragment)
 
-        makeCurrentFragment(homeFragment)
+        /*bottom_navigation.setupWithNavController(findNavController(R.id.navHost))
+
+        var appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf (
+                    R.id.home_fragment,
+                    R.id.catalogo,
+                    R.id.producto
+            )
+        )
+        setupActionBarWithNavController(findNavController(R.id.navHost), appBarConfiguration)*/
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){

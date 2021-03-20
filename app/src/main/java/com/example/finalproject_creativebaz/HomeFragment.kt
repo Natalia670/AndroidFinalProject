@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
@@ -19,12 +20,16 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        clothes_button.setOnClickListener{
+        clothes_button.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_catalogo)
+        )
+
+        /*clothes_button.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
         }
         crafts_button.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
-        }
+        }*/
     }
 }
 
