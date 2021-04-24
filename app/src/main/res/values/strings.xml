@@ -9,6 +9,17 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string-array name="categorias">
+        <item>Artesanías</item>
+        <item>Ropa</item>
+        <item>Decoración</item>
+        <item>Pintura</item>
+        <item>Escultura</item>
+        <item>Joyería</item>
+        <item>Otro</item>
+    </string-array>
+
     <string name="mail">Correo</string>
     <string name="password">Contraseña</string>
     <string name="register">Registrarse</string>

@@ -64,16 +64,23 @@
 
             <Button
                 android:id="@+id/clothes_button"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="143dp"
+                android:layout_height="81dp"
                 android:text="Ropa"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/crafts_button"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="132dp"
+                android:layout_height="81dp"
                 android:text="Artesanías"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/crafts_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Decoraciones"
                 android:textSize="12sp" />
         </TableRow>
 
@@ -82,5 +89,13 @@
             android:layout_height="match_parent" />
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="69dp"
+        android:layout_height="60dp"
+        android:text="Perfil"
+        tools:layout_editor_absoluteX="326dp"
+        tools:layout_editor_absoluteY="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

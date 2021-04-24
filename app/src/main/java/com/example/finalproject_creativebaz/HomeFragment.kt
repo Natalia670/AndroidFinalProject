@@ -24,6 +24,10 @@ class HomeFragment : Fragment() {
                 Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_catalogo)
         )
 
+        profileButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_perfil)
+        )
+
         /*clothes_button.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
         }

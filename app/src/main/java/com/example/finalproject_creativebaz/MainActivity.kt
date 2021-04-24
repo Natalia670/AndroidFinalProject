@@ -1,13 +1,14 @@
 package com.example.finalproject_creativebaz
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.FragmentActivity
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(findNavController(R.id.navHost), appBarConfiguration)*/
+
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){

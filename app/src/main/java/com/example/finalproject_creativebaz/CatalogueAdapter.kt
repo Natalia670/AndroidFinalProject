@@ -1,5 +1,8 @@
 package com.example.finalproject_creativebaz
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
+import com.squareup.picasso.Picasso
+import java.io.InputStream
+import java.net.URL
+
 
 class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapter<CatalogueAdapter.ProductViewHolder>(){
 
@@ -16,6 +22,7 @@ class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapte
         var picture = row.findViewById<ImageView>(R.id.imagen)
         var title = row.findViewById<TextView>(R.id.titulo)
     }
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -30,8 +37,7 @@ class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapte
         val product= products[position]
 
         Log.d("Products", product.toString())
-
-        holder.picture.setImageResource(product.picture)
+        Picasso.with(holder.picture.context).load(product.picture).into(holder.picture);
         holder.title.text = product.title
         holder.itemView.setOnClickListener {
             val action = CatalogueFragmentDirections.actionCatalogoToProducto(product)

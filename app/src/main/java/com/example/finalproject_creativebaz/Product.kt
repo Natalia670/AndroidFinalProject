@@ -5,7 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-data class Product (val picture: Int,
+data class Product (val id: String,
+                    val picture: String,
                     val title:String,
                     val author:String,
                     val description:String,

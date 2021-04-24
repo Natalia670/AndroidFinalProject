@@ -1,59 +1,138 @@
 package com.example.finalproject_creativebaz
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.view.get
+import androidx.navigation.Navigation
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_upload_product.*
+import java.io.ByteArrayOutputStream
+import java.util.*
+import java.util.jar.Manifest
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UploadProductFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class UploadProductFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class UploadProductFragment : Fragment(){
+    private var REQUEST_IMAGE_CAPTURE = 1
+    private lateinit var foto: Bitmap
+    private lateinit var categoria: String
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+    private lateinit var analytics: FirebaseAnalytics
+    private lateinit var bundle: Bundle
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("products")
+        bundle = Bundle()
         return inflater.inflate(R.layout.fragment_upload_product, container, false)
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UploadProductFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UploadProductFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    //inicializa el spinner
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val spinner = view.findViewById<Spinner>(R.id.categoria)
+        val lista = resources.getStringArray(R.array.categorias)
+        val adaptador = activity?.let{
+            ArrayAdapter(it,android.R.layout.simple_spinner_item, lista)
+        }
+        spinner.adapter = adaptador
+        spinner.onItemSelectedListener = object:
+        AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                categoria = lista[position].toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+    }
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        UploadImage.setOnClickListener{
+            fotoProducto()
+        }
+        PublishProduct.setOnClickListener{
+            addProduct()
+        }
+    }
+
+    public fun fotoProducto(){
+        val tomaFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(tomaFoto, REQUEST_IMAGE_CAPTURE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            foto = data?.extras?.get("data") as Bitmap
+        }
+
+    }
+
+
+
+    public fun addProduct(){
+
+        val titulo = view?.findViewById<EditText>(R.id.editTextTextPersonName)?.text
+        val creador = "Nat" //AQUI VA EL NOMBRE DEL QUE ESTÁ AUTENTICADO
+        val descripcion= view?.findViewById<EditText>(R.id.descripcion)?.text
+        val precio = view?.findViewById<EditText>(R.id.precio)?.text
+        if(titulo!!.isNotEmpty() && titulo!!.isNotBlank() && categoria.isNotEmpty() && categoria.isNotBlank()){
+            if( foto != null){
+                // Convertir a bytes la foto
+                val baos = ByteArrayOutputStream()
+                foto.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                val fileName = UUID.randomUUID().toString()
+                val storage_reference = FirebaseStorage.getInstance().getReference("/productos/$fileName")
+                val uploadTask = storage_reference.putBytes(data)
+                uploadTask.addOnSuccessListener {
+                    storage_reference.downloadUrl.addOnSuccessListener {
+                        val id = reference.push().key
+                        val product = Product(
+                                id.toString(),
+                                it.toString(),
+                                titulo.toString(),
+                                creador.toString(),
+                                descripcion.toString(),
+                                categoria,
+                                precio.toString().toInt()
+                        )
+                        reference.child(id!!).setValue(product)
+                        titulo.clear()
+                        descripcion!!.clear()
+                    }
+                }.addOnFailureListener{
+                    Toast.makeText(context, "Error al subir un producto", Toast.LENGTH_LONG).show()
                 }
             }
+            bundle.putString("edu_itesm_creativebaz", "added_product")
+            analytics.logEvent("main", bundle)
+        }else{
+            Toast.makeText(context, "error en titulo o categoria!", Toast.LENGTH_LONG).show()
+        }
     }
+
+
 }
