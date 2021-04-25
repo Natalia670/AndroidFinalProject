@@ -59,10 +59,21 @@
             <action
                 android:id="@+id/action_perfil_to_subirProducto"
                 app:destination="@id/subirProducto" />
+            <action
+                android:id="@+id/action_perfil_to_editProfileFragment"
+                app:destination="@id/editProfile" />
         </fragment>
         <fragment
             android:id="@+id/subirProducto"
             android:name="com.example.finalproject_creativebaz.UploadProductFragment"
             tools:layout="@layout/fragment_upload_product" />
+        <fragment
+            android:id="@+id/editProfile"
+            android:name="com.example.finalproject_creativebaz.EditProfileFragment"
+            android:label="EditProfileFragment" >
+            <action
+                android:id="@+id/action_editProfile_to_perfil"
+                app:destination="@id/perfil" />
+        </fragment>
     </navigation>
 </navigation>

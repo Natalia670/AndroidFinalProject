@@ -6,4 +6,9 @@
     <string name="notifications">Notificaciones</string>
     <string name="profile">Perfil</string>
     <string name="loginRegister" />
+    <string name="profession">Creador</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo pulvinar metus at pharetra. Nullam facilisis lacus id ante placerat, eget pellentesque quam ullamcorper. Praesent cursus ornare nisi, ut consequat ipsum porta ut. Donec nec metus vel eros ultricies sodales. Aenean ullamcorper diam ac arcu rutrum, sit amet luctus lacus.</string>
+    <string name="edit_profile">Edtiar Perfil</string>
+    <string name="bio_hint">Escribe a detalle tu biografía :)</string>
+    <string name="acept">Aceptar</string>
 </resources>

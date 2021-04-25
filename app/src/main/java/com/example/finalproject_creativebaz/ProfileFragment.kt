@@ -37,14 +37,16 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         addProductButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_perfil_to_subirProducto)
+        )
+
+        edit_profile_btn.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_perfil_to_editProfileFragment)
         )
 
         getUserData()
@@ -61,26 +63,16 @@ class ProfileFragment : Fragment() {
     private fun getUserData(){
         FirebaseAuth.getInstance().currentUser?.let { currentUser ->
             // the user is already logged in, so get the details from him/her
-
             // uid is unique for every logged in user, and wil always be not-null
-            val uid : String = currentUser.uid
+            //val uid : String = currentUser.uid
             // rest of the parameters might be null depending on the auth provider used
             val name: String? = currentUser.displayName
-            val email: String? = currentUser.email
+            //val email: String? = currentUser.email
             val profilePic : Uri? = currentUser.photoUrl
             //val contactNumber = currentUser.phoneNumber
 
-            Log.d("userD", uid)
-            if (name != null) {
-                Log.d("userD", name)
-            }
-
-            Log.d("userD", email.toString())
-            Log.d("userD", profilePic.toString())
-
             profile_name.text = name.toString()
             Picasso.with(activity?.baseContext).load(profilePic.toString()).into(profile_picture)
-
 
         }?: kotlin.run {
             // currentUser is null, that means the user is not logged in yet!

@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.finalproject_creativebaz.databinding.ActivityLoginBinding
 import com.example.finalproject_creativebaz.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -36,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun  setRegister(){
         bind.registerbtn.setOnClickListener {
-            if (bind.mail.text.isNotEmpty() && bind.password.text.isNotEmpty()){
+            if (bind.mail.text.isNotEmpty() && bind.password.text.isNotEmpty() && bind.name.text.isNotEmpty() ){
                 // utiliza la clase de FirebaseAuth:
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     bind.mail.text.toString(), //usuario y password
@@ -54,7 +55,7 @@ class RegisterActivity : AppCompatActivity() {
 
                         auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
                            if (task.isSuccessful) {
-                               Log.d("userD", "User profile updated.")
+                               Log.d("userD", "User Name and photo added successfully")
                            }
                         }
 

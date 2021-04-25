@@ -16,18 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val user = Firebase.auth.currentUser
-        user?.let {
-            for (profile in it.providerData) {
-                // Id of the provider (ex: google.com)
-                val providerId = profile.providerId
-
-                // UID specific to the provider
-                val uid = profile.uid
-            }
-        }
-
-        Log.d("user", user.uid)
         /*val homeFragment = HomeFragment()
         val catalogueFragment = CatalogueFragment()
         val notificationFragment = NotificationsFragment()
