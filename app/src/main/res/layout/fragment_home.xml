@@ -34,6 +34,7 @@
         app:layout_constraintGuide_end="242dp" />
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="415dp"
         android:layout_height="239dp"
         android:layout_marginTop="8dp"
@@ -92,10 +93,14 @@
 
     <Button
         android:id="@+id/profileButton"
-        android:layout_width="69dp"
-        android:layout_height="60dp"
-        android:text="Perfil"
-        tools:layout_editor_absoluteX="326dp"
-        tools:layout_editor_absoluteY="15dp" />
+        android:layout_width="51dp"
+        android:layout_height="56dp"
+        app:icon="@drawable/ic_baseline_person_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

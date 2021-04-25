@@ -11,4 +11,7 @@ data class Product (val id: String,
                     val author:String,
                     val description:String,
                     val category: String,
-                    val price: Int) : Parcelable
+                    val price: Int) : Parcelable{
+
+    constructor(): this("","","","","","",0)
+}

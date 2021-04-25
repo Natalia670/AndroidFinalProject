@@ -36,7 +36,7 @@ class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapte
 
         val product= products[position]
 
-        Log.d("Products", product.toString())
+        Log.i("Products", product.toString())
         Picasso.with(holder.picture.context).load(product.picture).into(holder.picture);
         holder.title.text = product.title
         holder.itemView.setOnClickListener {
