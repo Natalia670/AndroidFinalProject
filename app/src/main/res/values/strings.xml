@@ -20,8 +20,14 @@
         <item>Otro</item>
     </string-array>
 
+    <string name="name">Nombre</string>
+    <string name="lname">Apellido</string>
     <string name="mail">Correo</string>
+    <string name="address">Dirección</string>
     <string name="password">Contraseña</string>
     <string name="register">Registrarse</string>
-    <string name="login">Login</string>
+    <string name="login">Ingresar</string>
+    <string name="logout">Salir</string>
+    <string name="loginRegister"> Ya  tienes  cuenta?  Ingresa aquí</string>
+    <string name="registerLogin">No tienes cuenta? Crea una aquí</string>
 </resources>

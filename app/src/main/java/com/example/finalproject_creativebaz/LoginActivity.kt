@@ -24,28 +24,23 @@ class LoginActivity : AppCompatActivity() {
 
         // Inicializa objetos:
         auth = Firebase.auth
-        setLoginRegister() //sigue en la siguiente sección.
+        setLogin() //sigue en la siguiente sección.
     }
 
-    private fun setLoginRegister(){
+    override fun onStart() {
+        super.onStart()
+        val activeUser = auth.currentUser
+        if(activeUser != null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun setLogin(){
         bind.registerbtn.setOnClickListener {
-            if (bind.mail.text.isNotEmpty() && bind.password.text.isNotEmpty()){
-                // utiliza la clase de FirebaseAuth:
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-
-                    bind.mail.text.toString(), //usuario y password
-                    bind.password.text.toString()
-
-                ).addOnCompleteListener{
-                    if(it.isSuccessful){
-                        userCreated() //Viene más adelante la función
-                    }
-                }.addOnFailureListener{
-                    // en caso de error
-                    Toast.makeText(this,it.toString(), Toast.LENGTH_LONG).show()
-
-                }
-            }
+            val intento = Intent(this, RegisterActivity::class.java)
+            startActivity(intento)
+            finish()
         }
         bind.loginbtn.setOnClickListener {
             // Valida que correo y password no esten vacíos, incluye:
@@ -74,12 +69,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun userCreated(){
+    /*private fun userCreated(){
         Toast.makeText(this,"Usuario creado exitosamente", Toast.LENGTH_LONG).show()
         bind.mail.text.clear() //Limpiar las cajas de texto
         bind.password.text.clear()
         val intento = Intent(this, MainActivity::class.java)
         startActivity(intento)
         finish()
-    }
+    }*/
 }
