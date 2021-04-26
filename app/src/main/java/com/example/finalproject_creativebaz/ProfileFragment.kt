@@ -11,23 +11,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.finalproject_creativebaz.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-
 class ProfileFragment : Fragment() {
 
-    private lateinit var bind : ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+    private val user = Firebase.auth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("users")
 
     }
 
@@ -44,39 +50,74 @@ class ProfileFragment : Fragment() {
         addProductButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_perfil_to_subirProducto)
         )
-
         edit_profile_btn.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_perfil_to_editProfileFragment)
         )
 
         getUserData()
         logout()
-
-        /*clothes_button.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
-        }
-        crafts_button.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.action_homeFragment_to_catalogo)
-        }*/
     }
 
     private fun getUserData(){
-        FirebaseAuth.getInstance().currentUser?.let { currentUser ->
-            // the user is already logged in, so get the details from him/her
-            // uid is unique for every logged in user, and wil always be not-null
-            //val uid : String = currentUser.uid
-            // rest of the parameters might be null depending on the auth provider used
-            val name: String? = currentUser.displayName
-            //val email: String? = currentUser.email
-            val profilePic : Uri? = currentUser.photoUrl
-            //val contactNumber = currentUser.phoneNumber
+        val  userId = user.uid
 
+        FirebaseAuth.getInstance().currentUser?.let { currentUser ->
+            val name: String? = currentUser.displayName
+            val profilePic : Uri? = currentUser.photoUrl
             profile_name.text = name.toString()
             Picasso.with(activity?.baseContext).load(profilePic.toString()).into(profile_picture)
-
         }?: kotlin.run {
-            // currentUser is null, that means the user is not logged in yet!
             Log.d("user", "User not found")
+        }
+
+        reference.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("user", "Got snapshot $snapshot")
+                var userFound = false
+                for (child in snapshot.children){
+                    Log.d("user", "Inside For")
+                    val objeto = child.getValue(UserExtraInfo::class.java)
+                    if(userId == objeto?.userId){
+                        if (!objeto.bio.isNullOrBlank() || !objeto.bio.isNullOrEmpty()){
+                            Log.d("bio", "Resultado de objeto.bio = ${objeto.bio}")
+                            bioTextView.text = objeto.bio
+                        }else{
+                            bioTextView.text = getString(R.string.bio_empty)
+                        }
+                        if(!objeto.profession.isNullOrEmpty()){
+                            profession_text.text = objeto.profession
+                        }else{
+                            profession_text.text = getString(R.string.profession)
+                        }
+                        if(!objeto.contact.isNullOrEmpty()){
+                            contact_text.text = objeto.contact
+                        }else{
+                            contact_text.text = getString(R.string.contact_example)
+                        }
+                        userFound = true
+                        break
+                    }
+                }
+                if(!userFound){
+                    createUserInfo(userId)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        })
+    }
+
+    private fun createUserInfo(userId: String){
+        val bio = getString(R.string.bio_empty)
+        val contact = getString(R.string.contact_example)
+        val profession = "Creador"
+
+        val id = reference.push().key
+        val userExtraInfo = UserExtraInfo(userId, profession, bio, contact)
+        reference.child(id!!).setValue(userExtraInfo).addOnCompleteListener {
+            Log.d("user", "Se creo la información del usuario")
         }
     }
 

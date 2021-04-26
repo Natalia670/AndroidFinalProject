@@ -36,8 +36,9 @@
     <string name="edit_profile">Editar Perfil</string>
     <string name="bio_hint">Escribe a detalle tu biografía :)</string>
     <string name="acept">Aceptar</string>
-    <string name="contact_example">https://www.facebook.com/fax.fuentes/</string>
+    <string name="contact_example">Ej: https://www.facebook.com/john.doe/</string>
     <string name="phoneNumber">55 1234 5678</string>
+    <string name="bio_empty">¡Edita tu perfil para agregar información de ti como creador y la gente te conozca!</string>
 
     <string-array name="professions">
         <item>Creador</item>

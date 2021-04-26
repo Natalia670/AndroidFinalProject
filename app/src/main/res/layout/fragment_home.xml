@@ -67,7 +67,7 @@
                 android:id="@+id/clothes_button"
                 android:layout_width="143dp"
                 android:layout_height="81dp"
-                android:text="Ropa"
+                android:text="Catalogo"
                 android:textSize="12sp" />
 
             <Button

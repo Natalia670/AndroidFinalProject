@@ -14,8 +14,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.get
 import androidx.navigation.Navigation
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -59,13 +61,11 @@ class UploadProductFragment : Fragment(){
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 categoria = lista[position].toString()
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                categoria = lista[0].toString()
             }
         }
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -90,12 +90,11 @@ class UploadProductFragment : Fragment(){
 
     }
 
-
-
     public fun addProduct(){
-
+        val user = Firebase.auth.currentUser
         val titulo = view?.findViewById<EditText>(R.id.editTextTextPersonName)?.text
-        val creador = "Nat" //AQUI VA EL NOMBRE DEL QUE ESTÁ AUTENTICADO
+        val creador = user.displayName
+        //val creadorID = user.uid
         val descripcion= view?.findViewById<EditText>(R.id.descripcion)?.text
         val precio = view?.findViewById<EditText>(R.id.precio)?.text
         if(titulo!!.isNotEmpty() && titulo!!.isNotBlank() && categoria.isNotEmpty() && categoria.isNotBlank()){
@@ -127,8 +126,7 @@ class UploadProductFragment : Fragment(){
                     Toast.makeText(context, "Error al subir un producto", Toast.LENGTH_LONG).show()
                 }
             }
-            bundle.putString("edu_itesm_creativebaz", "added_product")
-            analytics.logEvent("main", bundle)
+            bundle.putString("tag", "added_product")
         }else{
             Toast.makeText(context, "error en titulo o categoria!", Toast.LENGTH_LONG).show()
         }

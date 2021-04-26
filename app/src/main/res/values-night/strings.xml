@@ -11,4 +11,5 @@
     <string name="edit_profile">Edtiar Perfil</string>
     <string name="bio_hint">Escribe a detalle tu biografía :)</string>
     <string name="acept">Aceptar</string>
+    <string name="bio_empty">¡Edita tu perfil para agregar información de ti como creador y la gente te conozca!</string>
 </resources>

@@ -27,7 +27,7 @@
             app:layout_constraintVertical_bias="0.744" />
 
         <TextView
-            android:id="@+id/profession"
+            android:id="@+id/profession_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
@@ -56,7 +56,7 @@
             android:layout_marginBottom="20dp"
             android:text="Contacto"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+            app:layout_constraintBottom_toTopOf="@+id/contact_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.173"
             app:layout_constraintStart_toStartOf="parent" />
@@ -79,9 +79,9 @@
             android:id="@+id/profile_picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="36dp"
             android:contentDescription="@string/profile_pic_desc"
-            app:layout_constraintBottom_toTopOf="@+id/profession"
+            app:layout_constraintBottom_toTopOf="@+id/profession_text"
             app:layout_constraintEnd_toEndOf="@+id/profile_name"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="@+id/profile_name" />
@@ -126,7 +126,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/contact_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="56dp"
@@ -148,7 +148,7 @@
                 android:id="@+id/bioTextView"
                 android:layout_width="275dp"
                 android:layout_height="100dp"
-                android:text="@string/lorem" />
+                android:text="@string/bio_empty" />
         </ScrollView>
 
         <Button
