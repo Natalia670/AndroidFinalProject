@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.product_preview.*
@@ -33,9 +32,26 @@ class CatalogueFragment : Fragment() {
         getProducts()
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        button_pintura.setOnClickListener (
+            //Log.i("Button Product Detail", "Send me to the next view")
+            //view?.findNavController()?.navigate(R.id.action_catalogo_to_productFragment)
+            Navigation.createNavigateOnClickListener(R.id.action_catalogo_to_productFragment)
+        )
+
+        /*button_pintura.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_catalogo_to_productFragment)
+        )*/
+
+
+
+    }
+
     fun getProducts(){
 
-         reference.addValueEventListener(object : ValueEventListener {
+         /*reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var pl = ArrayList<Product>()
                 for (product in snapshot.children){
@@ -52,7 +68,7 @@ class CatalogueFragment : Fragment() {
 
             }
 
-        })
+        })*/
 
     }
 

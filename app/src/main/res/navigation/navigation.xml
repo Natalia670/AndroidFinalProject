@@ -10,44 +10,28 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_carrito"
-            app:destination="@id/notificaciones" />
-        <action
             android:id="@+id/action_homeFragment_to_perfil"
             app:destination="@id/navigation4" />
         <action
             android:id="@+id/action_homeFragment_to_catalogo"
             app:destination="@id/catalogo" />
+        <action
+            android:id="@+id/action_home_fragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_productFragment"
+            app:destination="@id/productFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/notificaciones"
-        android:name="com.example.finalproject_creativebaz.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/catalogo"
         android:name="com.example.finalproject_creativebaz.CatalogueFragment"
-        app:startDestination="@id/action_catalogo_to_producto"
+        app:startDestination="@id/action_catalogo_to_productFragment"
         tools:layout="@layout/fragment_catalogue">
         <action
-            android:id="@+id/action_catalogo_to_producto"
-            app:destination="@id/producto" />
+            android:id="@+id/action_catalogo_to_productFragment"
+            app:destination="@id/productFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/producto"
-        android:name="com.example.finalproject_creativebaz.ProductFragment"
-        tools:layout="@layout/fragment_product">
-        <action
-            android:id="@+id/action_producto_to_placeholder8"
-            app:destination="@id/datosPago" />
-        <argument
-            android:name="product"
-            app:argType="com.example.finalproject_creativebaz.Product" />
-    </fragment>
-    <fragment
-        android:id="@+id/datosPago"
-        android:name="com.example.finalproject_creativebaz.BuyProductFragment"
-        tools:layout="@layout/fragment_buy_product" />
 
     <navigation
         android:id="@+id/navigation4"
@@ -62,6 +46,9 @@
             <action
                 android:id="@+id/action_perfil_to_editProfileFragment"
                 app:destination="@id/editProfile" />
+            <action
+                android:id="@+id/action_perfil_to_home_fragment"
+                app:destination="@id/home_fragment" />
         </fragment>
         <fragment
             android:id="@+id/subirProducto"
@@ -76,4 +63,18 @@
                 app:destination="@id/perfil" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.finalproject_creativebaz.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_productFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.finalproject_creativebaz.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

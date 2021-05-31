@@ -40,7 +40,7 @@ class CatalogueAdapter(private val products:List<Product>) : RecyclerView.Adapte
         Picasso.with(holder.picture.context).load(product.picture).into(holder.picture);
         holder.title.text = product.title
         holder.itemView.setOnClickListener {
-            val action = CatalogueFragmentDirections.actionCatalogoToProducto(product)
+            val action = CatalogueFragmentDirections.actionCatalogoToProductFragment()
             holder.itemView.findNavController().navigate(action)
         }
     }

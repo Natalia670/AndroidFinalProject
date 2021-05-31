@@ -34,7 +34,6 @@ class ProfileFragment : Fragment() {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("users")
-
     }
 
     override fun onCreateView(
@@ -52,6 +51,10 @@ class ProfileFragment : Fragment() {
         )
         edit_profile_btn.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_perfil_to_editProfileFragment)
+        )
+
+        home_btn.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_perfil_to_home_fragment)
         )
 
         getUserData()

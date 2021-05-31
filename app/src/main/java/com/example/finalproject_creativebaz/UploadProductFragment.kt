@@ -128,7 +128,7 @@ class UploadProductFragment : Fragment(){
             }
             bundle.putString("tag", "added_product")
         }else{
-            Toast.makeText(context, "error en titulo o categoria!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Producto agregado éxitosamente", Toast.LENGTH_LONG).show()
         }
     }
 
